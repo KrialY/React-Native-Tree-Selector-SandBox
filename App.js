@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Picker } from "react-native";
 import Tree from "./src/components/Tree";
 import struct from "./src/struct";
+import PickerView from "./src/components/PickView";
 
 // 这里并不需要让用户输入数组类型的selected来选择选中哪个分支，
 // 我们只需要让用户传入选中的分支的ID即可，如果是叶子分支，那么渲染到叶子分支即可
@@ -10,6 +11,7 @@ import struct from "./src/struct";
 export default function APP() {
   const [selected, setSelected] = useState("02");
   const [selectedValue, setSelectedValue] = useState("java");
+  const list = ["list1", "list2", "list3", "list4"];
 
   return (
     <>
@@ -22,8 +24,18 @@ export default function APP() {
           <Text>点击</Text>
         </TouchableOpacity>
         <Text>{selected}</Text>
-        <Tree struct={struct} selected={selected} setSelected={setSelected} />
+        {/* <Tree struct={struct} selected={selected} setSelected={setSelected} /> */}
       </View>
+      <PickerView
+        list={list}
+        onPickerSelected={(toValue) => {
+          // console.warn(toValue)
+        }}
+        selectedIndex={0}
+        fontSize={14}
+        itemWidth={100}
+        itemHeight={50}
+      />
     </>
   );
 }
